@@ -99,10 +99,10 @@ namespace WordUnscrambler
                 //No Matches have been found
                 Console.WriteLine("No matches have been found");
             }
-            do
-            {
+            
+            
                 
-            }
+         
         }
     }
 }
