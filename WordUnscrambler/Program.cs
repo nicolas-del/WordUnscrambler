@@ -89,12 +89,19 @@ namespace WordUnscrambler
                 {
                     //write to console
                     //Match found for act: cat
+
+                    Console.WriteLine($"Match found for {matchedWord}: {matchedWord}");
                 }
 
             }
             else 
             {
                 //No Matches have been found
+                Console.WriteLine("No matches have been found");
+            }
+            do
+            {
+                
             }
         }
     }
