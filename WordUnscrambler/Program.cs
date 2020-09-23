@@ -26,7 +26,7 @@ namespace WordUnscrambler
                         Console.WriteLine("Enter file path including the file name: ");
                         ExecuteScrambledWordsInFileScenario();
                         break;
-
+                        
                     case "M":
                         Console.WriteLine("Enter word(s) manually (separated by commas if multiple)");
                         ExecuteScrambledWordsManualEntryScenario();
@@ -42,6 +42,7 @@ namespace WordUnscrambler
             }
         }
 
+
         private static void ExecuteScrambledWordsManualEntryScenario()
         {
             //get user's input - a comma separated string containing scrambled words
@@ -55,6 +56,7 @@ namespace WordUnscrambler
             DisplayMatchedUnscrambledWords(scrambledWords);
         }
 
+
         private static void ExecuteScrambledWordsInFileScenario()
         {
             //read the user's input - file with scrambled words
@@ -66,6 +68,7 @@ namespace WordUnscrambler
             //display the matched words
             DisplayMatchedUnscrambledWords(scrambledWords);
         }
+
 
         private static void DisplayMatchedUnscrambledWords(string[] scrambleWords)
         {

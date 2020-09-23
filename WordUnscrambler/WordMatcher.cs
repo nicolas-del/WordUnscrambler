@@ -12,7 +12,7 @@ namespace WordUnscrambler
         {
             List<MatchedWord> matchedWords = new List<MatchedWord>();
 
-            foreach( var scrambledWord in scrambledWords) 
+            foreach(var scrambledWord in scrambledWords) 
             {
                 foreach (var word in wordList) 
                 {
@@ -24,8 +24,21 @@ namespace WordUnscrambler
                     }
                     else 
                     {
-                        //convert strings into character arrays
                         char[] scrambledWordArray = scrambledWord.ToCharArray();
+                        char[] scrambledWordArray2 = word.ToCharArray();
+
+                        Array.Sort(scrambledWordArray);
+                        Array.Sort(scrambledWordArray2);
+
+                        string scramble = new string (scrambledWordArray);
+                        string scramble2 = new string(scrambledWordArray2);
+
+                        if(scramble.Equals(scramble2))
+                        {
+                            matchedWords.Add(BuildMatchedWord(scramble, scramble2));
+                        }
+
+                        //convert strings into character arrays
 
                         //sort both character arrays (Array.sort())
                         //act -> sort -> act
