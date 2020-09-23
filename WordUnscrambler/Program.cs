@@ -46,7 +46,7 @@ namespace WordUnscrambler
         private static void ExecuteScrambledWordsManualEntryScenario()
         {
             //get user's input - a comma separated string containing scrambled words
-            string manualInput;
+            string manualInput = Console.ReadLine();
             //extract the words into a string[] - use Split()
 
             char[] seperators = {',',' '};
@@ -99,10 +99,6 @@ namespace WordUnscrambler
                 //No Matches have been found
                 Console.WriteLine("No matches have been found");
             }
-            
-            
-                
-         
         }
     }
 }
