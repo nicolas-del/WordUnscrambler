@@ -20,12 +20,12 @@ namespace WordUnscrambler
             try
             {
                 readFiles = File.ReadAllLines(fileName);
+
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-
             return readFiles;
         }
     }
