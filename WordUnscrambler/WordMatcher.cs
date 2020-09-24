@@ -35,7 +35,7 @@ namespace WordUnscrambler
 
                         if (scramble.Equals(scramble2))
                         {
-                            matchedWords.Add(BuildMatchedWord(scramble, scramble2));
+                            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                         }
 
                         //convert strings into character arrays

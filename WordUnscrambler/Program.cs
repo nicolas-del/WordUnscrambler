@@ -152,7 +152,7 @@ namespace WordUnscrambler
                 {
                     //write to console
                     //Match found for act: cat
-                    Console.WriteLine("Match found for {0}: {1}" ,scrambleWords , matchedWord);
+                    Console.WriteLine("Match found for {0}: {1}" ,matchedWord.ScrambledWord , matchedWord.Word);
                 }
             }
             else 
