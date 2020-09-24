@@ -37,7 +37,6 @@ namespace WordUnscrambler
                         {
                             matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                         }
-
                         //convert strings into character arrays
 
                         //sort both character arrays (Array.sort())

@@ -12,6 +12,7 @@ namespace WordUnscrambler
     {
         private static readonly FileReader _fileReader = new FileReader();
         private static readonly WordMatcher _wordMatcher = new WordMatcher();
+        private static readonly Constants _constants = new Constants();
 
         static void Main(string[] args)
         {
@@ -29,8 +30,8 @@ namespace WordUnscrambler
 
                     do
                     {
-                        Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
-                        option = Console.ReadLine() ?? throw new Exception("String is empty/null");
+                        Console.WriteLine(_constants.IntroductionString());
+                        option = Console.ReadLine() ?? throw new Exception(_constants.ExceptionString());
 
                         switch (option)
                         {
@@ -57,23 +58,23 @@ namespace WordUnscrambler
                     switch (officialOption.ToUpper())
                     {
                         case "F":
-                            Console.WriteLine("Enter file path including the file name: ");
+                            Console.WriteLine(_constants.FilePathString());
                             ExecuteScrambledWordsInFileScenario();
                             break;
 
                         case "M":
-                            Console.WriteLine("Enter word(s) manually (separated by commas if multiple)");
+                            Console.WriteLine(_constants.ManualPathString());
                             ExecuteScrambledWordsManualEntryScenario();
                             break;
                         default:
-                            Console.WriteLine("The entered option was not recognized");
+                            Console.WriteLine(_constants.InvalidPathString());
                             break;
                     }
 
                     do
                     {
-                        Console.WriteLine("Would you like to continue? Y/N");
-                        quit = Console.ReadLine() ?? throw new Exception("String is empty/null");
+                        Console.WriteLine(_constants.QuitValidationString());
+                        quit = Console.ReadLine() ?? throw new Exception(_constants.ExceptionString());
 
                         switch (quit)
                         {
@@ -95,12 +96,13 @@ namespace WordUnscrambler
                     } while (isValid == false);
 
                     officialOption = quit;
+
                 } while (officialOption.Contains("Y") || officialOption.Contains("y"));
             } 
             
             catch (Exception ex)
             {
-                Console.WriteLine("The program will be terminated." + ex.Message);
+                Console.WriteLine(_constants.ProgramTerminationString() + ex.Message);
             }
 
         }
@@ -152,14 +154,13 @@ namespace WordUnscrambler
                 {
                     //write to console
                     //Match found for act: cat
-                    Console.WriteLine("Match found for {0}: {1}" ,matchedWord.ScrambledWord , matchedWord.Word);
+                    Console.WriteLine(_constants.MatchFoundString(), matchedWord.ScrambledWord, matchedWord.Word);
                 }
             }
             else 
             {
                 //No Matches have been found
-                Console.WriteLine("No matches have been found");
-                Console.ReadLine();
+                Console.WriteLine(_constants.NoMatchesFoundString());
             }
         }
     }
