@@ -20,7 +20,6 @@ namespace WordUnscrambler
             try
             {
                 readFiles = File.ReadAllLines(fileName);
-
             }
             catch(Exception ex)
             {

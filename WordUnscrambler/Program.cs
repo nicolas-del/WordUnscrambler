@@ -14,13 +14,41 @@ namespace WordUnscrambler
         static void Main(string[] args)
         {
 
+          
+            string option, officialOption;
+
             try
             {
-                Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                bool isValid;
 
-                string option = Console.ReadLine() ?? throw new Exception("String is empty/null");
+                do
+                {
+                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                    option = Console.ReadLine() ?? throw new Exception("String is empty/null");
 
-                switch (option.ToUpper())
+                    switch(option) 
+                    {
+                        case "M":
+                        case "m":
+                            option = "M";
+                            isValid = true;
+                            break;
+                        case "F":
+                        case "f":
+                            option = "F";
+                            isValid = true;
+                            break;
+                        default:
+                            option = null;
+                            isValid = false;
+                            break; 
+                    }
+
+                } while (isValid == false);
+
+                officialOption = option;
+                
+                    switch (officialOption.ToUpper())
                 {
                     case "F":
                         Console.WriteLine("Enter file path including the file name: ");
@@ -40,6 +68,7 @@ namespace WordUnscrambler
             {
                 Console.WriteLine("The program will be terminated." + ex.Message);
             }
+
         }
 
 
