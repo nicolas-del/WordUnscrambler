@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace WordUnscrambler
 {
@@ -19,52 +21,84 @@ namespace WordUnscrambler
 
             try
             {
-                bool isValid;
 
                 do
                 {
-                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
-                    option = Console.ReadLine() ?? throw new Exception("String is empty/null");
+                    string quit;
+                    bool isValid;
 
-                    switch(option) 
+                    do
                     {
-                        case "M":
-                        case "m":
-                            option = "M";
-                            isValid = true;
-                            break;
+                        Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                        option = Console.ReadLine() ?? throw new Exception("String is empty/null");
+
+                        switch (option)
+                        {
+                            case "M":
+                            case "m":
+                                option = "M";
+                                isValid = true;
+                                break;
+                            case "F":
+                            case "f":
+                                option = "F";
+                                isValid = true;
+                                break;
+                            default:
+                                option = null;
+                                isValid = false;
+                                break;
+                        }
+
+                    } while (isValid == false);
+
+                    officialOption = option;
+
+                    switch (officialOption.ToUpper())
+                    {
                         case "F":
-                        case "f":
-                            option = "F";
-                            isValid = true;
+                            Console.WriteLine("Enter file path including the file name: ");
+                            ExecuteScrambledWordsInFileScenario();
+                            break;
+
+                        case "M":
+                            Console.WriteLine("Enter word(s) manually (separated by commas if multiple)");
+                            ExecuteScrambledWordsManualEntryScenario();
                             break;
                         default:
-                            option = null;
-                            isValid = false;
-                            break; 
+                            Console.WriteLine("The entered option was not recognized");
+                            break;
                     }
 
-                } while (isValid == false);
+                    do
+                    {
+                        Console.WriteLine("Would you like to continue? Y/N");
+                        quit = Console.ReadLine() ?? throw new Exception("String is empty/null");
 
-                officialOption = option;
-                
-                    switch (officialOption.ToUpper())
-                {
-                    case "F":
-                        Console.WriteLine("Enter file path including the file name: ");
-                        ExecuteScrambledWordsInFileScenario();
-                        break;
-                        
-                    case "M":
-                        Console.WriteLine("Enter word(s) manually (separated by commas if multiple)");
-                        ExecuteScrambledWordsManualEntryScenario();
-                        break;
-                    default:
-                        Console.WriteLine("The entered option was not recognized");
-                        break;
-                }
-            }
-            catch (Exception ex) 
+                        switch (quit)
+                        {
+                            case "Y":
+                            case "y":
+                                quit = "Y";
+                                isValid = true;
+                                break;
+                            case "N":
+                            case "n":
+                                quit = "N";
+                                isValid = true;
+                                break;
+                            default:
+                                quit = null;
+                                isValid = false;
+                                break;
+                        }
+                    } while (isValid == false);
+
+                    officialOption = quit;
+                } while (officialOption.Contains("Y") || officialOption.Contains("y"));
+            } 
+            
+            catch (Exception ex)
             {
                 Console.WriteLine("The program will be terminated." + ex.Message);
             }
@@ -118,15 +152,14 @@ namespace WordUnscrambler
                 {
                     //write to console
                     //Match found for act: cat
-
-                    Console.WriteLine($"Match found for {matchedWord}: {matchedWord}");
+                    Console.WriteLine("Match found for {0}: {1}" ,scrambleWords , matchedWord);
                 }
-
             }
             else 
             {
                 //No Matches have been found
                 Console.WriteLine("No matches have been found");
+                Console.ReadLine();
             }
         }
     }
